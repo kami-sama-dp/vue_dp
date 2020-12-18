@@ -12,4 +12,4 @@ const obj = {
 
 Object.defineProperty(obj, 'age', {value:18})
 
-console.log(obj)
+// console.log(obj)

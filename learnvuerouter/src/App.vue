@@ -10,7 +10,19 @@
     </router-link> -->
     <button @click="userClick()">用户</button>
     <button @click="profileClick()">档案</button>
-    <router-view></router-view>
+
+    <!-- vuecli4 特性 -->
+    <router-view v-slot="{ Component }">
+        <keep-alive>
+            <component :is="Component" />
+        </keep-alive>
+    </router-view>
+
+    <!-- vuecli3 写法
+    <keep-alive>
+    <router-view/>
+    </keep-alive> -->
+
 </div>
 </template>
 
@@ -28,12 +40,12 @@ export default {
         },
         profileClick() {
             this.$router.push({
-              path: '/profile',
-              query: {
-                name: 'codePush',
-                age: 18, 
-                height: 1.88
-              }
+                path: '/profile',
+                query: {
+                    name: 'codePush',
+                    age: 18,
+                    height: 1.88
+                }
             })
         }
     }
