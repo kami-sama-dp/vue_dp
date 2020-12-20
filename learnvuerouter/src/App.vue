@@ -26,20 +26,60 @@
 </template>
 
 <script>
-new Promise((resolve, reject) => {
-  setTimeout(() => {
-    // resolve("success message");
-    reject("error meassage");
-  }, 1000);
-})
-  .then((data) => {
-    console.log(data);
-    console.log(data);
-  })
-  .catch((err) => {
-    console.log(err);
-    console.log(err);
-  });
+// new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     // resolve("success message");
+//     reject("error meassage");
+//   }, 1000);
+// })
+//   .then((data) => {
+//     console.log(data);
+//     console.log(data);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//     console.log(err);
+//   });
+
+// new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve("aaaa");
+//   }, 1000);
+// })
+//   .then((res) => {
+//     console.log("第一层:", res);
+//     // return Promise.resolve(res + "222");
+//     throw "throw message2";
+//     // return Promise.reject("error message22222");
+//     // return res + "2222"; // 等于直接调用resolve方法
+//   })
+//   .then((res) => {
+//     console.log("第二层:", res);
+//     // return Promise.resolve(res + "333");
+//     return res + "333"; // 等于直接调用resolve方法
+//   })
+//   .then((res) => {
+//     console.log("第三层:", res);
+//   })
+//   .catch((err) => {
+//   console.log(err);
+// });
+
+Promise.all([
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("result1");
+    }, 3000);
+  }),
+  new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve("result2");
+    }, 1000);
+  }),
+]).then((results) => {
+  console.log(results[0]);
+  console.log(results[1]);
+});
 export default {
   name: "#app",
   data() {
