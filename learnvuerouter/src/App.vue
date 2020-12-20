@@ -1,5 +1,5 @@
 <template>
-<div id="nav">
+  <div id="nav">
     <router-link to="/home">首页</router-link>
     <router-link to="/about">关于</router-link>
     <!-- <router-link :to="'/user/' + userId">用户</router-link>
@@ -13,64 +13,77 @@
 
     <!-- vuecli4 特性 -->
     <router-view v-slot="{ Component }">
-        <keep-alive>
-            <component :is="Component" />
-        </keep-alive>
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
     </router-view>
 
     <!-- vuecli3 写法
     <keep-alive>
     <router-view/>
     </keep-alive> -->
-
-</div>
+  </div>
 </template>
 
 <script>
+new Promise((resolve, reject) => {
+  setTimeout(() => {
+    // resolve("success message");
+    reject("error meassage");
+  }, 1000);
+})
+  .then((data) => {
+    console.log(data);
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log(err);
+    console.log(err);
+  });
 export default {
-    name: "#app",
-    data() {
-        return {
-            userId: "zhangsan",
-        };
+  name: "#app",
+  data() {
+    return {
+      userId: "zhangsan",
+    };
+  },
+  methods: {
+    userClick() {
+      this.$router.push("/user/" + this.userId);
     },
-    methods: {
-        userClick() {
-            this.$router.push('/user/' + this.userId)
+    profileClick() {
+      this.$router.push({
+        path: "/profile",
+        query: {
+          name: "codePush",
+          age: 18,
+          height: 1.88,
         },
-        profileClick() {
-            this.$router.push({
-                path: '/profile',
-                query: {
-                    name: 'codePush',
-                    age: 18,
-                    height: 1.88
-                }
-            })
-        }
-    }
+      });
+    },
+  },
 };
 </script>
 
 <style lang="less">
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 
 #nav {
-    padding: 30px;
+  padding: 30px;
 
-    a {
-        font-weight: bold;
-        color: #2c3e50;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
 
-        &.router-link-exact-active {
-            color: #42b983;
-        }
+    &.router-link-exact-active {
+      color: #42b983;
     }
+  }
 }
 </style>

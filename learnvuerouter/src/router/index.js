@@ -23,7 +23,7 @@ const routes = [
       {
         path:'',
         redirect: '/home/news'
-      },
+      }, 
       {
         path: 'news',
         component: HomeNews
