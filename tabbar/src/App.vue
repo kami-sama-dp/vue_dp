@@ -6,6 +6,9 @@
     <button @click="subtraction">-</button>
     <h2>-------------子组件</h2>
     <hello-vuex></hello-vuex>
+    <h2>-------------App内容: getters相关信息----------</h2>
+    <h2>{{$store.getters.powerCounter}}</h2>
+    <h2>{{more20Stu}}</h2>
 </div>
 </template>
 
@@ -20,6 +23,11 @@ export default {
         return {
             message: "我是App组件",
         };
+    },
+    computed:{
+      more20Stu(){
+        return this.$store.state.students.filter(s=>s.age>=20)
+      }
     },
     methods: {
         addition() {
