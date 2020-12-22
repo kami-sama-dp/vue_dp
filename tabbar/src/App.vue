@@ -1,28 +1,27 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <h2>-------------App</h2>
+    <h2>{{$store.state.counter}}</h2>
+    <button @click="counter++">+</button>
+    <button @click="counter--">-</button>
+    <h2>-------------子组件</h2>
+    <hello-vuex></hello-vuex>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
+import HelloVuex from "./components/HelloVuex";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    HelloVuex,
+  },
+  data() {
+    return {
+      message: "我是App组件",
+    };
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
