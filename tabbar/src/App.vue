@@ -23,10 +23,10 @@ export default {
     },
     methods: {
         addition() {
-          this.$store.commit("increment")
+            this.$store.commit("increment")
         },
         subtraction() {
-          this.$store.commit("decrement")
+            this.$store.commit("decrement")
         }
     },
 };
