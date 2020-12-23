@@ -43,7 +43,12 @@ export default {
             this.$store.commit("decrement")
         },
         addCount(count){
-            this.$store.commit("incrementCount", count)
+            // this.$store.commit("incrementCount", count)
+            this.$store.commit({
+                type: "incrementCount",
+                // count:count
+                count,
+            })
         },
         addStudent(){
             const stu = {id: 114, name:"why111", age:25}
