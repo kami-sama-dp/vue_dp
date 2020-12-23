@@ -8,7 +8,10 @@
     <hello-vuex></hello-vuex>
     <h2>-------------App内容: getters相关信息----------</h2>
     <h2>{{$store.getters.powerCounter}}</h2>
-    <h2>{{more20Stu}}</h2>
+    <h2>{{$store.getters.more20Stu}}</h2>
+    <h2>{{$store.getters.more20StuLength}}</h2>
+    <h2>{{$store.getters.moreAgeStu(18)}}</h2>
+    <h2>{{$store.getters.moreAgeStuLength(18)}}</h2>
 </div>
 </template>
 
