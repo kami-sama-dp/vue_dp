@@ -4,6 +4,9 @@
     <h2>{{$store.state.counter}}</h2>
     <button @click="addition">+</button>
     <button @click="subtraction">-</button>
+    <button @click="addCount(5)">+5</button>
+    <button @click="addCount(10)">+10</button>
+    <button @click="addStudent">添加一个学生</button>
     <h2>-------------子组件</h2>
     <hello-vuex></hello-vuex>
     <h2>-------------App内容: getters相关信息----------</h2>
@@ -38,6 +41,13 @@ export default {
         },
         subtraction() {
             this.$store.commit("decrement")
+        },
+        addCount(count){
+            this.$store.commit("incrementCount", count)
+        },
+        addStudent(){
+            const stu = {id: 114, name:"why111", age:25}
+            this.$store.commit("addStudent", stu)
         }
     },
 };
