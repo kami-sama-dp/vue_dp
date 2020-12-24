@@ -2,11 +2,13 @@
 <div id="app">
     <h2>-------------App组件</h2>
     <h2>{{$store.state.counter}}</h2>
+    <h2>{{$store.state.info}}</h2>
     <button @click="addition">+</button>
     <button @click="subtraction">-</button>
     <button @click="addCount(5)">+5</button>
     <button @click="addCount(10)">+10</button>
     <button @click="addStudent">添加一个学生</button>
+    <button @click="updateInfo">添加信息</button>
     <h2>-------------子组件</h2>
     <hello-vuex></hello-vuex>
     <h2>-------------App内容: getters相关信息----------</h2>
@@ -20,6 +22,7 @@
 
 <script>
 import HelloVuex from "./components/HelloVuex";
+import {INCREMENT} from "./store/mutations-types";
 export default {
     name: "App",
     components: {
@@ -37,7 +40,7 @@ export default {
     },
     methods: {
         addition() {
-            this.$store.commit("increment")
+            this.$store.commit(INCREMENT)
         },
         subtraction() {
             this.$store.commit("decrement")
@@ -53,6 +56,9 @@ export default {
         addStudent(){
             const stu = {id: 114, name:"why111", age:25}
             this.$store.commit("addStudent", stu)
+        },
+        updateInfo(){
+          this.$store.commit("updateInfo")
         }
     },
 };

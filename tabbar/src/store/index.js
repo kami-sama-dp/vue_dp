@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { INCREMENT } from "./mutations-types";
+
 
 Vue.use(Vuex)
 
@@ -12,12 +14,17 @@ const store = new Vuex.Store({
             { id: 102, name: 'why2', age: 20 },
             { id: 103, name: 'why3', age: 21 },
             { id: 104, name: 'why4', age: 22 },
-        ]
+        ],
+        info:{
+            name: 'why333333',
+            age: 40, 
+            height: 1.88
+        }
     },
 
     //同步操作
     mutations: {
-        increment(state) {
+        [INCREMENT](state) {
             state.counter++
         },
         decrement(state) {
@@ -30,6 +37,15 @@ const store = new Vuex.Store({
         },
         addStudent(state, stu){
             state.students.push(stu)
+        },
+        updateInfo(state){
+            // state.info.name = "修改后名字"
+            // Vue.set(state.info, 'address', '测试1111')
+
+            //该方法做不到响应式
+            // delete state.info.age
+            
+            Vue.delete(state.info, 'age')
         }
     },
 
