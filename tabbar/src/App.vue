@@ -58,7 +58,14 @@ export default {
             this.$store.commit("addStudent", stu)
         },
         updateInfo(){
-          this.$store.commit("updateInfo")
+        //   this.$store.commit("updateInfo")
+            // this.$store.dispatch("aUpdateInfo",{
+            //     message: "我是携带的信息",
+            //     success:  ()=>{
+            //         console.log("里面已经完成了！");
+            //     }
+            // })
+            this.$store.dispatch("aUpdateInfo", "我是携带的信息").then(res=>console.log(res))
         }
     },
 };

@@ -6,6 +6,7 @@ import { INCREMENT } from "./mutations-types";
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+    //该state里面的对象一定是通过mutations操作的
     state: {
         counter: 10000,
         students: [
@@ -39,18 +40,39 @@ const store = new Vuex.Store({
             state.students.push(stu)
         },
         updateInfo(state){
-            // state.info.name = "修改后名字"
-            // Vue.set(state.info, 'address', '测试1111')
+            // 不要在mutations 做异步操作
+            // setTimeout(()=>{
+            //     state.info.name = "修改后的名字111111"
+            // }, 1000)
+            state.info.name = "修改后名字"
+            Vue.set(state.info, 'address', '测试1111')
 
             //该方法做不到响应式
             // delete state.info.age
             
-            Vue.delete(state.info, 'age')
+            // Vue.delete(state.info, 'age')
         }
     },
 
     //异步操作
-    actions: {},
+    actions: {
+        // aUpdateInfo(context, payload){
+        //     setTimeout(()=>{
+        //         context.commit("updateInfo")
+        //         console.log(payload.message);
+        //         payload.success()
+        //     }, 1000)
+        // }
+        aUpdateInfo(context, payload){
+            return new Promise((resolve, reject)=>{
+                setTimeout(()=>{
+                    context.commit("updateInfo")
+                    console.log(payload);
+                    resolve("111111111111")
+                }, 1000)
+            })
+        }
+    },
     getters: {
         powerCounter(state) {
             return state.counter * state.counter
