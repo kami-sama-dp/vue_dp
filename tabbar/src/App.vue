@@ -1,5 +1,13 @@
 <template>
 <div id="app">
+    <h2>-------------App组件, modules里的内容</h2>
+    <h2>{{$store.state.a.name}}</h2>
+    <button @click="updateName">修改名字</button>
+    <h2>{{$store.getters.fullName}}</h2>
+    <h2>{{$store.getters.fullName2}}</h2>
+    <h2>{{$store.getters.fullName3}}</h2>
+    <button @click="asyncUpdateName">异步修改</button>
+
     <h2>-------------App组件</h2>
     <h2>{{$store.state.counter}}</h2>
     <h2>{{$store.state.info}}</h2>
@@ -66,6 +74,12 @@ export default {
             //     }
             // })
             this.$store.dispatch("aUpdateInfo", "我是携带的信息").then(res=>console.log(res))
+        },
+        updateName(){
+            this.$store.commit("updateName", "bbbbbb")           
+        },
+        asyncUpdateName(){
+            this.$store.dispatch("aUpdateName")
         }
     },
 };
