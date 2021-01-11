@@ -1,52 +1,31 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-const constantRoutes = [
+const routes = [
   {
-    path: '/login',
-    component: () => import('../views/login/index.vue'),
-    hidden: true
+    path: '/',
+    name: 'Home',
+    component: Home
   },
   {
-    path: 'auth-redirect',
-    component: () => import('../views/login/auth-redirect.vue'),
-    hidden: true
-  },
-  {
-    path: '/404',
-    component: () => import('../views/error-page/404.vue'),
-    hidden: true
-  },
-  {
-    path: '/401',
-    component: () => import('../views/error-page/401.vue'),
-    hidden: true
-  },
-  // {
-  //   path:'/',
-  //   component: Layout,
-  //   redirect: '/dashboard',
-  //   children:[
-  //     {
-  //       path: 'dashboard',
-  //       component: ()=>import('../views/dashboard/index.vue'),
-  //       name: 'Dashboard',
-  //       meta:{
-  //         title: 'Dashboard',
-  //         icon: 'dashboard',
-  //         affix:true
-  //       }
-  //     }
-  //   ]
-  // }
+    path: '/about',
+    name: 'About',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: function () {
+      return import(/* webpackChunkName: "about" */ '../views/About.vue')
+    }
+  }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes:constantRoutes
+  routes
 })
 
 export default router
