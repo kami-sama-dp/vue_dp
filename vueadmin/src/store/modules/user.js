@@ -1,10 +1,12 @@
 import {login} from '@/api/user';
 const state = {
-
+    token:''
 }
 
 const mutations = {
-
+    SET_TOKEN(state, token){
+        state.token = token
+    }
 }
 
 
@@ -15,10 +17,11 @@ const actions = {
         const { username, password } = userInfo
         return new Promise((reject, reslove)=>{
             login({username:username.trim(), password: password}).then(res=>{
+                console.log("mock的login:", res)
                 const data = res.data
                 commit('SET_TOKEN', data.token)
                 reslove()
-            }).catch(err=>reject(err))
+        }).catch(err=>reject(err))
         })
     }
 }

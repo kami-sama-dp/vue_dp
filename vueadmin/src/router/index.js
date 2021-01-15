@@ -5,15 +5,22 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '',
-    redirect: '/login'
-  },
-  {
     path: '/login',
     name: 'login',
     component: ()=>import('@/views/login/index'),
     hidden:true
   },
+  {
+    path: '/index',
+    name: 'index',
+    component: ()=>import('@/views/layout')
+  },
+  {
+    path: '/',
+    redirect: '/dashboard',
+    name:'dashboard',
+    component:()=>import('@/views/dashboard')
+  }
 ]
 
 const router = new VueRouter({
