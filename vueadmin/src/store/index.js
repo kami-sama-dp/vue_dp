@@ -16,16 +16,7 @@ const modules = modulesFiles.keys().reduce((modules, modulePath) => {
   return modules
 }, {})
 
-console.log(modules)
 export default new Vuex.Store({
-  state: {
-  },
-
-  //同步操作
-  mutations: {
-  },
-  //异步操作
-  actions: {
-  },
-  modules
+  modules, 
+  getters
 })

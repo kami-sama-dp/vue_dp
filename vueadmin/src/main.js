@@ -20,7 +20,6 @@ import './permisson'
  * please remove it before going online ! ! !
  */
 if (process.env.NODE_ENV === 'development') {
-  console.log('mockSuccess')
   const { mockXHR } = require('../mock')
   mockXHR()
 }

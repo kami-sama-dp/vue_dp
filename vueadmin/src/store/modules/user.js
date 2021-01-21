@@ -1,11 +1,17 @@
 import {login} from '@/api/user';
+import {getToken, setToken} from '@/utils/auth';
 const state = {
-    token:''
+    token: getToken(),
+    roles:[]
 }
 
 const mutations = {
     SET_TOKEN(state, token){
         state.token = token
+        console.log('state.token:', state.token)
+    },
+    SET_ROLES(state, roles){
+        state.roles = roles
     }
 }
 
@@ -15,13 +21,19 @@ const actions = {
     //变量解构赋值
     login({ commit }, userInfo) {
         const { username, password } = userInfo
-        return new Promise((reject, reslove)=>{
+        return new Promise((resolve, reject)=>{
             login({username:username.trim(), password: password}).then(res=>{
-                console.log("mock的login:", res)
                 const data = res.data
                 commit('SET_TOKEN', data.token)
-                reslove()
+                setToken(data.token)
+                resolve()
         }).catch(err=>reject(err))
+        })
+    },
+
+    get_user_info({commit, state}){
+        return new Promise((resolve, reject)=>{
+            
         })
     }
 }

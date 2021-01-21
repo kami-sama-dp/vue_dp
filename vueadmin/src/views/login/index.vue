@@ -47,7 +47,18 @@ export default {
             otherQuery: {},
         };
     },
-    watch: {},
+    watch: {
+    $route: {
+      handler: function(route) {
+        const query = route.query
+        if (query) {
+          this.redirect = query.redirect
+          this.otherQuery = this.getOtherQuery(query)
+        }
+      },
+      immediate: true
+    }
+  },
     created() {
         // window.addEventListener('storage', this.afterQRScan)
     },
@@ -79,14 +90,13 @@ export default {
                 .dispatch("user/login", this.loginForm)
                 .then(() => {
                     this.$router.push({
-                        path: this.redirect || "/",
-                        query: ""
+                        path: this.redirect || "/"
                     });
                     this.loading = false
+
                 })
                 .catch((err) => {
                     this.loading = false;
-                    console.log(err);
                 });
         },
         getOtherQuery(query) {},

@@ -3,30 +3,95 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
-const routes = [
+import Layout from '@/layout/index'
+
+// all roles can be accessed
+export const constantRoutes = [
   {
     path: '/login',
     name: 'login',
-    component: ()=>import('@/views/login/index'),
-    hidden:true
-  },
-  {
-    path: '/index',
-    name: 'index',
-    component: ()=>import('@/views/layout')
+    component: () => import('@/views/login/index'),
+    hidden: true
   },
   {
     path: '/',
     redirect: '/dashboard',
-    name:'dashboard',
-    component:()=>import('@/views/dashboard')
+    component: Layout,
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard'),
+        name: 'dashboard',
+        meta: { title: 'dashboard', icon: 'dashboard', affix: true }
+      },
+    ]
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/error-page/404'),
+    hidden: true
+  },
+  {
+    path: '/401',
+    component: () => import('@/views/error-page/401'),
+    hidden: true
+  },
+  {
+    path: '/documentation',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/documentation'),
+        name: 'documentation',
+        meta: { title: 'documentation', icon: 'documentation', affix: true }
+      }
+    ]
+  },
+  {
+    path: "/guide",
+    redirect: '/guide/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/guide'),
+        name: 'guide',
+        meta: { title: 'guide', icon: 'guide', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/profile',
+    component: Layout,
+    redirect: '/profile/index',
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/profile'),
+        name: 'profile',
+        meta: { title: 'profile', icon: 'profile', affix: true }
+      }
+    ]
+  }
+]
+
+// the routes that need to be dynamically loaded based on user roles
+export const asyncRoutes = [
+  {
+    path: '/permisson',
+    component: Layout,
+    redirect: '/permisson/index',
+    alwaysShow: true, // will always show the root menu
+    name: 'permisson',
+    meta: { title: 'permisson', icon: 'lock', roles: ['admin', 'editor'] }
   }
 ]
 
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes: constantRoutes
 })
 
 export default router
