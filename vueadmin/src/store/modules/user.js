@@ -1,4 +1,4 @@
-import {login} from '@/api/user';
+import {login, getInfo} from '@/api/user';
 import {getToken, setToken} from '@/utils/auth';
 const state = {
     token: getToken(),
@@ -33,7 +33,11 @@ const actions = {
 
     get_user_info({commit, state}){
         return new Promise((resolve, reject)=>{
-            
+            getInfo(state.token).then(resp=>{
+                const {data} = resp
+                console.log("getInfo", data)
+                resolve()
+            }).catch(err=>reject(err))
         })
     }
 }
