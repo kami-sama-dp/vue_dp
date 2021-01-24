@@ -35,8 +35,7 @@ const actions = {
         return new Promise((resolve, reject)=>{
             getInfo(state.token).then(resp=>{
                 const {data} = resp
-                console.log("getInfo", data)
-                resolve()
+                resolve(data)
             }).catch(err=>reject(err))
         })
     }

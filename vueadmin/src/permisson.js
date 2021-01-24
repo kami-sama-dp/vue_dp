@@ -5,7 +5,7 @@ import store from './store';
 
 
 const whiteList = ['/login', '/auth-redirect']
-router.beforeEach((to, from, next) => {
+router.beforeEach(async(to, from, next) => {
     const hasToken = getToken() 
     if (hasToken){
         if(to.path === '/login'){
@@ -18,6 +18,7 @@ router.beforeEach((to, from, next) => {
             }else{
                 try{
                     const {roles} = await store.dispatch('user/get_user_info')
+                    console.log(roles)
                 }catch(err){
                     next({path: '/login'})
                 }
