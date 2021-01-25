@@ -2,6 +2,7 @@ import { TabPane } from 'element-ui'
 import router from './router'
 import { getToken } from '@/utils/auth';
 import store from './store';
+import role from '../mock/role';
 
 
 const whiteList = ['/login', '/auth-redirect']
@@ -18,7 +19,8 @@ router.beforeEach(async(to, from, next) => {
             }else{
                 try{
                     const {roles} = await store.dispatch('user/get_user_info')
-                    console.log(roles)
+                    const accessRoutes = await store.dispatch('permisson/generateRoutes', roles)
+                    console.log(accessRoutes)
                 }catch(err){
                     next({path: '/login'})
                 }
