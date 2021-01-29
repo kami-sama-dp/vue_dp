@@ -1,8 +1,12 @@
 import {login, getInfo} from '@/api/user';
 import {getToken, setToken} from '@/utils/auth';
+import role from '../../../mock/role';
 const state = {
     token: getToken(),
-    roles:[]
+    roles:[],
+    name: '' , 
+    avatar: '',
+    introduction: '',
 }
 
 const mutations = {
@@ -12,6 +16,15 @@ const mutations = {
     },
     SET_ROLES(state, roles){
         state.roles = roles
+    },
+    SET_AVATAR(state, avatar){
+        state.avatar = avatar
+    },
+    SET_INTRODUCTION(state, introduction){
+        state.introduction = introduction
+    },
+    SET_NAME(state, name){
+        state.name = name
     }
 }
 
@@ -35,6 +48,17 @@ const actions = {
         return new Promise((resolve, reject)=>{
             getInfo(state.token).then(resp=>{
                 const {data} = resp
+                if(!data){
+                    reject("验证失败!,please login again")
+                }
+                const{avatar, introduction, name, roles} = data
+                if (!roles ||roles.length <= 0){
+                    reject("getInfo: roles must be a non-null array!")
+                }
+                commit('SET_ROLES', roles)
+                commit('SET_NAME', name)
+                commit('SET_INTRODUCTION', introduction)
+                commit('SET_AVATAR', avatar)
                 resolve(data)
             }).catch(err=>reject(err))
         })

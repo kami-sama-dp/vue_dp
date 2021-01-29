@@ -22,6 +22,7 @@ import {mapActions, mapGetters} from 'vuex'
 import variables from "@/styles/variables.scss";
 import SidebarItem from "./SidebarItem";
 export default {
+  components:{SidebarItem},
   computed: {
     ...mapGetters(['permisson_routes']),
     showLogo() {
