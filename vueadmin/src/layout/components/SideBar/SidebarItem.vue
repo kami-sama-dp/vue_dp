@@ -8,7 +8,9 @@
 
 <script>
 import AppLink from './Link';
-import {isExternal} from  '@/utils/validate';
+import {
+    isExternal
+} from '@/utils/validate';
 export default {
     name: 'SidebarItem',
     components: {
@@ -24,7 +26,7 @@ export default {
             type: Object,
             requried: true
         },
-        basePath:{
+        basePath: {
             type: String,
             default: ''
         }
@@ -34,26 +36,30 @@ export default {
             const showingChildren = children.filter(item => {
                 if (item.hidden) {
                     return false
-                }else{
+                } else {
                     this.onlyOneChild = item
                     return true
                 }
             })
-            if(showingChildren.length === 1){
+            if (showingChildren.length === 1) {
                 return true
             }
-            if(showingChildren.length ==0){
-                this.onlyOneChild= {...parent, path: '', noShowingChildren:true}
+            if (showingChildren.length == 0) {
+                this.onlyOneChild = {
+                    ...parent,
+                    path: '',
+                    noShowingChildren: true
+                }
                 return true
             }
             return false
-  
+
         },
-        resolvePath(routePath){
-            if(isExternal(routePath)){
+        resolvePath(routePath) {
+            if (isExternal(routePath)) {
                 return routePath
             }
-            if(isExternal(this.basePath)){
+            if (isExternal(this.basePath)) {
                 return this.basePath
             }
             return path.resolve(this.basePath, routePath)
