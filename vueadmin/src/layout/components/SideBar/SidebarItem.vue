@@ -1,13 +1,14 @@
 <template>
 <div v-if="!item.hidden">
     <template v-if="hasOneShowingChild(item.children, item)&&(!onlyOneChild.children||onlyOneChild.noShowingChildren) && !item.alwaysShow">
-        <app-link v-if='onlyOneChild.meta'></app-link>
+        <app-link v-if='onlyOneChild.meta' :to='resolvePath(onlyOneChild.path)'></app-link>
     </template>
 </div>
 </template>
 
 <script>
 import AppLink from './Link';
+import {isExternal} from  '@/utils/validate';
 export default {
     name: 'SidebarItem',
     components: {
@@ -43,6 +44,11 @@ export default {
             }
             return false
   
+        },
+        resolvePath(routePath){
+            if(isExternal(routePath)){
+
+            }
         }
     }
 }
