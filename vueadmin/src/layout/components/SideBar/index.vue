@@ -4,7 +4,7 @@
       <el-menu
         :default-active="activeMenu"
         :collapse="isCollapse"
-        :background-color="variables.menuText"
+        :background-color="variables.menuBg"
         :text-color="variables.menuText"
         :unique-opened="false"
         :active-text-color="variables.menuActiveText"
