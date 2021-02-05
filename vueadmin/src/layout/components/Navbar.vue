@@ -1,11 +1,13 @@
 <template>
 <div class='navbar'>
     <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <bread-crumb/>
 </div>
 </template>
 
 <script>
 import Hamburger from '@/components/Hamburger'
+import BreadCrumb from '@/components/Breadcrumb';
 import { mapGetters } from 'vuex'
 export default {
     name: 'NarBar',
@@ -13,7 +15,8 @@ export default {
       ...mapGetters(['sidebar', 'device'])
     },
     components: {
-        Hamburger
+        Hamburger,
+        BreadCrumb
     },
     methods: {
         toggleSideBar() {
