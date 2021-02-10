@@ -21,7 +21,7 @@ export const constantRoutes = [
       {
         path: 'dashboard',
         component: () => import('@/views/dashboard'),
-        name: 'dashboard',
+        name: 'Dashboard',
         meta: { title: 'dashboard', icon: 'dashboard', affix: true }
       },
     ]

@@ -34,12 +34,10 @@ export default {
         getBreadCrumb(){
             let matched = this.$route.matched.filter(item => item.meta && item.meta.title)
             const first = matched[0]
-            // console.log(first)
             if(!this.isDashBoard(first)){
                 matched = [{path: '/dashboard', meta:{title:'dashboard'}}].concat(matched)
             }
             this.levelList = matched.filter(item=>item.meta && item.meta.title && item.meta.breadcrumb !==false)
-            console.log(this.levelList)
         },
         isDashBoard(route){
             const name = route && route.name

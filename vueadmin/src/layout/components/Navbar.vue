@@ -2,12 +2,20 @@
 <div class='navbar'>
     <hamburger id="hamburger-container" :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
     <bread-crumb/>
+    <div class="right-menu">
+      <template v-if="device!='mobile'">
+        <header-search>
+
+        </header-search>
+      </template>
+    </div>
 </div>
 </template>
 
 <script>
 import Hamburger from '@/components/Hamburger'
 import BreadCrumb from '@/components/Breadcrumb';
+import HeaderSearch from '@/components/HeaderSearch';
 import { mapGetters } from 'vuex'
 export default {
     name: 'NarBar',
@@ -16,7 +24,8 @@ export default {
     },
     components: {
         Hamburger,
-        BreadCrumb
+        BreadCrumb,
+        HeaderSearch
     },
     methods: {
         toggleSideBar() {
