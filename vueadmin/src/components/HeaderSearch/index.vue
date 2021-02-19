@@ -35,11 +35,12 @@ export default {
         }
     },
     created(){
+        console.log(this.routes)
         this.serachPool = this.generateRoutes(this.routes)
     },
     watch:{
         routes(){
-
+            this.serachPool = this.generateRoutes(this.routes)
         },
         serachPool(){
         }
@@ -52,9 +53,7 @@ export default {
             }
         },
         change(val){
-            console.log(this.$route)
             this.$route.push(val)
-             console.log(this.$route)
         },
         querySearch(query){
             if(query!=''){
@@ -64,7 +63,6 @@ export default {
             }     
         },
         generateRoutes(routes, basePath='/', prefixTitle=[]){
-            console.log(routes)
             for(let route of routes){
                 if(route.hidden){continue}
                 const data = {
