@@ -76,3 +76,11 @@ class Foo1:
 obj = Foo1([11, 22, 33, 44])
 for i in obj:
     print(i)
+
+class Foo2:
+    def __init__(self):
+        pass
+
+obj = Foo2()
+print(type(obj))
+print(type(Foo2))
