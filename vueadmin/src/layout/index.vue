@@ -6,6 +6,7 @@
       <div :class="{'fixed-header':fixedHeader}">
         <nav-bar />
       </div>
+      <app-main/>
     </div>
   </div>
 </template>

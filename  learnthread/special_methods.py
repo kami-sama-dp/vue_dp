@@ -1,3 +1,6 @@
+username = 'pu.deng'
+password = 'Ma4651885804'
+
 class Foo:
     """ 描述类信息"""
     def func(self):
@@ -84,3 +87,107 @@ class Foo2:
 obj = Foo2()
 print(type(obj))
 print(type(Foo2))
+
+class MyType(type):
+
+    def __init__(self, what, bases=None, dict=None):
+        super(MyType, self).__init__()
+
+    def __call__(self, *args, **kwargs):
+        obj = self.__new__()
+
+# class PositiveInteger(int):
+#
+#   def __new__(cls, value):
+#
+#     return super(PositiveInteger, cls).__new__(cls, abs(value))
+#
+# i = PositiveInteger(-3)
+#
+# print(i)
+
+
+class ListDemo:
+
+    def __init__(self):
+        self.__date = []
+        self.__step = 0
+
+    def __next__(self):
+        if self.__step <= 0:
+            raise StopIteration
+        self.__step -= 1
+        return self.__date[self.__step]
+
+    def __iter__(self):
+        return self
+
+    def __setitem__(self, key, value):
+        self.__date.insert(key, value)
+        self.__step += 1
+
+myList = ListDemo()
+myList[0] = 2
+myList[1] = 5
+myList[2] = 8
+for i in myList:
+    print(i)
+
+
+def intNum():
+    print("开始执行")
+    for i in range(5):
+        yield i
+        print("继续执行")
+num = intNum()
+
+print("=======生成器==========")
+# print(next(num))
+# print(next(num))
+# print(num.__next__())
+print("===========>")
+for i in num:
+    print(i)
+
+
+class from_obj(object):
+    def __init__(self, to_object):
+        self.to_object = to_object
+
+
+b = [1, 2, 3]
+a = from_obj(b)
+print(id(a.to_object))
+print(id(b))
+
+from sys import getrefcount
+
+# a = [1, 2, 3]
+# print(getrefcount(a))
+# b = [a, a]
+# # c = a
+# print(getrefcount(b))
+# # print(getrefcount(c))
+
+x = [1, 2, 3]
+y = [x, dict(key1=x)]
+z = [y, (x, y)]
+print(y)
+print(z)
+
+a = [1, 2, 3]
+b = a
+print(getrefcount(b))
+
+a = 1
+print(getrefcount(b))
+
+c = 'very good sdadfa'
+d = 'very good sdadfa'
+print(c is d )
+
+import sys
+if __name__ == "__main__":
+    print("=====================")
+    zsx = 123
+    print(getrefcount(zsx))
