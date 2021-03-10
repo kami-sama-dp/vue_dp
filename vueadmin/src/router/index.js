@@ -21,7 +21,7 @@ export const constantRoutes = [
       {
         path: 'dashboard',
         component: () => import('@/views/dashboard'),
-        name: 'dashboard',
+        name: 'Dashboard',
         meta: { title: 'dashboard', icon: 'dashboard', affix: true }
       },
     ]
@@ -70,7 +70,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/profile'),
         name: 'profile',
-        meta: { title: 'profile', icon: 'profile', affix: true }
+        meta: { title: 'profile', icon: 'user', affix: true }
       }
     ]
   }
@@ -84,7 +84,27 @@ export const asyncRoutes = [
     redirect: '/permisson/index',
     alwaysShow: true, // will always show the root menu
     name: 'permisson',
-    meta: { title: 'permisson', icon: 'lock', roles: ['admin', 'editor'] }
+    meta: { title: 'permisson', icon: 'lock', roles: ['admin', 'editor'] },
+    children: [
+      {
+        path: 'page',
+        component: () => import("@/views/permisson/page"),
+        name: 'PagePermisson',
+        meta: { title: 'Page Permisson',  }
+      }, 
+      {
+        path: 'directive',
+        component: () => import("@/views/permisson/directive"),
+        name: 'DirectivePermission',
+        meta: { title: 'Directive Permisson', }
+      },
+      {
+        path: 'role',
+        component: () => import("@/views/permisson/role"),
+        name: 'RolePermission',
+        meta: { title: 'Role Permisson', }
+      },
+    ]
   }
 ]
 

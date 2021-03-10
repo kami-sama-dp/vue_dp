@@ -1,10 +1,15 @@
 <template>
     <div class="dashboard-container">
-        <h2>11111</h2>
+        <component :is='currentRole'/>
     </div>
 </template>
 
 <script>
 export default {
+    data(){
+        return {
+            currentRole: 'adminDashboard'
+        }
+    }
 }
 </script>
