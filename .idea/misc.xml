@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.8 (venv)" project-jdk-type="Python SDK" />
+  <component name="PyCharmProfessionalAdvertiser">
+    <option name="shown" value="true" />
+  </component>
+  <component name="RMarkdownSettings">
+    <option name="renderProfiles">
+      <map>
+        <entry key="$PROJECT_DIR$/flask_celery_learn/README.md">
+          <value>
+            <RMarkdownRenderProfile>
+              <option name="knitRootDirectory" value="$PROJECT_DIR$/flask_celery_learn" />
+            </RMarkdownRenderProfile>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/flask_celery_learn/README.md.rmd">
+          <value>
+            <RMarkdownRenderProfile>
+              <option name="knitRootDirectory" value="$PROJECT_DIR$/flask_celery_learn" />
+            </RMarkdownRenderProfile>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
