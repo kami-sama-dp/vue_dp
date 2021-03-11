@@ -52,3 +52,9 @@
   }
 }
 </style>
+
+<script>
+export default {
+  name: 'GithubCorner'
+}
+</script>

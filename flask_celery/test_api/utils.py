@@ -16,3 +16,10 @@ def check_signature(func):
         timestamp = request.args.get('timestamp', '')
         nonce = request.args.get('nonce', '')
     return inner
+
+
+def init_wechat_sdk():
+    access_token = redis.get("wechat:access_token")
+    jsapi_ticket = redis.get("wechat:jsapi_ticket")
+    token_expires_at = redis.get("wechat:access_token_expires_at")
+    ticket_expires_at = redis.get("wechat:jsapi_ticket_expires_at")

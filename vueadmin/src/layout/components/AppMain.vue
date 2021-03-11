@@ -1,10 +1,11 @@
 <template>
   <section class="app-main">
-    <transition name="fade-transform" mode="out-in">
+    <!-- <transition name="fade-transform" mode="out-in">
       <keep-alive :include="cachedViews">
         <router-view :key="key" />
       </keep-alive>
-    </transition>
+    </transition> -->
+    <router-view/>
   </section>
 </template>
 
@@ -16,6 +17,7 @@ export default {
       return this.$store.state.tagsView.cachedViews
     },
     key() {
+      console.log("key:", this.$route.path)
       return this.$route.path
     }
   }
