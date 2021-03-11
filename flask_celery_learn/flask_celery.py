@@ -1,5 +1,5 @@
 from flask import Flask
-from flask_celery_learn.celery_example import make_celery
+from celery_example import make_celery
 
 app = Flask(__name__)
 app.config['BROKER_URL'] = 'redis://localhost:6379/0'

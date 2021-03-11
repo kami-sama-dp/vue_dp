@@ -102,7 +102,8 @@ print(s1 is s2)
 
 print("============使用元类实现单例================")
 
-class SingleTon1:
+
+class SingleTon1(type):
 
     def __init__(self, *args, **kwargs):
         print("__init__")
@@ -112,13 +113,93 @@ class SingleTon1:
     def __call__(self, *args, **kwargs):
         print("__call__")
         if self._instance is None:
-            self._instance = super(SingleTon1, self).__call__(*args, **kwargs)
+            self._instance = super().__call__(*args, **kwargs)
         return self._instance
 
 
-class Foo2():
-    __metaclass__ = SingleTon1
+class Foo2(metaclass=SingleTon1):
+    pass
+
 
 
 foo = Foo2()
 
+
+class Student:
+    def __init__(self, name, score):
+        self._name = name
+        self._score = score
+
+    @property
+    def score(self):
+        return self._score
+
+    @score.setter
+    def score(self, score):
+        if not isinstance(score, int):
+           raise ValueError("invalid score!!")
+        if score < 0 or score > 100:
+            raise ValueError("score must between [0,100]!")
+        self._score = score
+
+    @property
+    def name(self):
+        return self._name
+
+
+s1 = Student("Lily", 80)
+s1.score = 99
+print(s1.score)
+print(s1.name)
+
+print("===============魔法方法===============")
+
+
+# class Person(object):
+#
+#     def __del__(self):
+#         print('__del__')
+#
+#
+# a = Person()
+# b = a
+# del a
+# print("exit")
+
+
+# 合并2个有序list
+def mergeTwoStr(str1, str2):
+    len1 = len(str1)
+    len2 = len(str2)
+    pos = len1 + len2 - 1
+    result = [0] * (len1 + len2)  # 构造长度为 len1 + len2 的一个新list
+    m, n = len1 - 1, len2 - 1
+    while m >= 0 and n >= 0:
+        if str1[m] > str2[n]:
+            result[pos] = str1[m]
+            pos -= 1
+            m -= 1
+        else:
+            result[pos] = str2[n]
+            pos -= 1
+            n -= 1
+    # 将头部剩余的直接拼接到result的前半部分
+    if m >= 0:
+        result[:pos+1] = str1[:m+1]
+    else:
+        result[:pos+1] = str2[:n+1]
+    return result
+
+
+str1 = [1, 2, 3]
+str2 = [-1, 4, 5, 6]
+result = mergeTwoStr(str1, str2)
+print(result)
+str1 = [2, 3, 4, 5]
+str2 = [3, 4, 5, 6]
+result = mergeTwoStr(str1, str2)
+print(result)
+str1 = [1, 1, 1]
+str2 = []
+result = mergeTwoStr(str1, str2)
+print(result)
